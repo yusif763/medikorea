@@ -43,7 +43,7 @@ export default function LeftSection() {
   })();
 
   return (
-    <div className="relative w-1/2 bg-cover bg-center text-white p-10 flex flex-col justify-center  shadow-lg overflow-hidden" style={{ backgroundImage: `url(${leftSectionData.backgroundImage})` }}>
+    <div className="relative hidden md:flex w-1/2 bg-cover bg-center text-white p-10 flex flex-col justify-center  shadow-lg overflow-hidden" style={{ backgroundImage: `url(${leftSectionData.backgroundImage})` }}>
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40"></div>
       {/* Content */}
