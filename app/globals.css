@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.swiper-pagination-bullet-active{
+    background: #E2CFC9 !important;
+}
