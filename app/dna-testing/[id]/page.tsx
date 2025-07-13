@@ -69,6 +69,11 @@ const mockData = {
   },
 };
 
+export async function generateStaticParams() {
+  const ids = Object.keys(mockData);
+  return ids.map((id) => ({ id }));
+}
+
 export default async function DnaTesting({ params }: { params: { id: string } }) {
   const { id } = params;
 
