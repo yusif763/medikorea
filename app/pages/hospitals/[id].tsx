@@ -1,3 +1,4 @@
+'use client'
 import { useRouter } from "next/router";
 
 const mockData = {
@@ -37,6 +38,11 @@ const mockData = {
     image: "/europe-ivf.jpg",
   },
 };
+
+export async function generateStaticParams() {
+  const ids = Object.keys(mockData);
+  return ids.map((id) => ({ id }));
+}
 
 export default function Hospitals() {
   const router = useRouter();
