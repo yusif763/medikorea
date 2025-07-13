@@ -39,10 +39,6 @@ const mockData = {
   },
 };
 
-export async function generateStaticParams() {
-  const ids = Object.keys(mockData);
-  return ids.map((id) => ({ id }));
-}
 
 export default function Hospitals() {
   const router = useRouter();
