@@ -32,17 +32,40 @@ export default function AboutPage() {
     <div className="p-6 max-w-7xl mx-auto">
       {/* Hero Section */}
       <section className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-blue-800 mb-4">About MediHelp Korea</h1>
+        <h1 className="text-5xl font-extrabold text-blue-800 mb-4">MediHelp Korea</h1>
         <p className="text-lg text-gray-600">
-          We are dedicated to providing the best medical tourism services in Korea, connecting patients with world-class healthcare facilities and professionals.
+          Where world-class medicine meets concierge-level care.
         </p>
       </section>
 
-      {/* Mission Section */}
+      {/* About Us Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-bold text-blue-800 mb-6">Our Mission</h2>
-        <p className="text-gray-700 text-lg">
-          At MediHelp Korea, our mission is to make healthcare accessible and seamless for international patients. We aim to provide personalized care, expert guidance, and a stress-free experience.
+        <h2 className="text-3xl font-bold text-blue-800 mb-6">About Us</h2>
+        <p className="text-gray-700 text-lg mb-4">
+          At MediHelp Korea, we don’t just book appointments — we curate entire medical experiences.
+        </p>
+        <p className="text-gray-700 text-lg mb-4">
+          We are a premium medical concierge agency based in Seoul, dedicated to guiding international clients through South Korea’s most advanced clinics, doctors, and wellness solutions.
+        </p>
+        <p className="text-gray-700 text-lg mb-4">
+          Whether you’re coming for a comprehensive check-up, transformative aesthetic treatment, or a complex surgical procedure — we handle everything: from clinic selection and doctor coordination to translation, aftercare, and VIP hospitality.
+        </p>
+        <p className="text-gray-700 text-lg mb-4">
+          Our service is personal. Discreet. Stylish. We speak your language, understand your priorities, and deliver results with integrity and care.
+        </p>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="mb-12">
+        <h2 className="text-3xl font-bold text-blue-800 mb-6">Why Clients Choose MediHelp Korea</h2>
+        <ul className="list-disc list-inside text-gray-700 text-lg space-y-2">
+          <li>Access to South Korea’s top hospitals, specialists, and cutting-edge treatments</li>
+          <li>Handled A–Z: medical planning, interpretation, transport, recovery</li>
+          <li>Multilingual support (English, Russian, Arabic)</li>
+          <li>Premium experience without clinical coldness — always elegant, always human</li>
+        </ul>
+        <p className="text-gray-700 text-lg mt-4">
+          Your health is personal. So is our service. Welcome to MediHelp Korea.
         </p>
       </section>
 

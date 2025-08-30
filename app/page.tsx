@@ -6,6 +6,9 @@ import Services from "./components/Services";
 import Partners from "./components/PartnersSection";
 import CeoPart from "./components/CeoPart";
 import Tabs from "./components/Tabs";
+import MedicalServicesSection from "./components/MedicalServices";
+import FAQSection from "./components/FAQ";
+import BeforeAfterSection from "./components/BeforAfter";
 
 export default function Home() {
   return (
@@ -16,12 +19,13 @@ export default function Home() {
       <About />
       <TopClaimSection />
       <HowItWorks />
-      <Services />
+      <BeforeAfterSection />
+
+      <MedicalServicesSection />
       <Partners />
       <CeoPart />
-
+      <FAQSection />
       {/* <Reordering /> */}
-      <Tabs />
       {/* <GooeyMenu /> */}
     </div>
   );
