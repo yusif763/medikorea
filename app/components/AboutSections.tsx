@@ -23,13 +23,7 @@ export default function About() {
             </div>
 
          
-          <img
-            src="/about.png"
-            width={400}
-
-            alt="About MediHelp Korea"
-            className="absolute bottom-0 right-0 z-[1] opacity-40 hidden lg:block"
-          />
+        
         </div>
         <div className="">
          

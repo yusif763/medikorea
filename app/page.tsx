@@ -14,12 +14,12 @@ export default function Home() {
   return (
     <div>
       
-      <Hero />
+      {/* <Hero /> */}
 
       <About />
       <TopClaimSection />
       <HowItWorks />
-      <BeforeAfterSection />
+      {/* <BeforeAfterSection /> */}
 
       <MedicalServicesSection />
       <Partners />

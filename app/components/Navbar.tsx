@@ -6,11 +6,16 @@ import { X, Menu, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeMainDropdown, setActiveMainDropdown] = useState<string | null>(null);
+  const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const toggleDropdown = (menu: string) =>
-    setActiveDropdown(activeDropdown === menu ? null : menu);
+  const toggleMainDropdown = (menu: string) => {
+    setActiveMainDropdown(activeMainDropdown === menu ? null : menu);
+    setActiveSubDropdown(null); // Close sub dropdowns when main changes
+  };
+  const toggleSubDropdown = (menu: string) =>
+    setActiveSubDropdown(activeSubDropdown === menu ? null : menu);
 
   return (
     <>
@@ -44,180 +49,176 @@ export default function Navbar() {
 
         <div className="flex flex-col gap-4 text-black font-semibold text-lg">
           <Link href="/about">ABOUT US</Link>
-
-          <div>
-            <button
-              onClick={() => toggleDropdown("dnaTesting")}
-              className="flex justify-between items-center w-full"
-            >
-              <span className="font-bold">DNA TESTING</span>
-              <ChevronDown
-                size={20}
-                className={`transition-transform ${
-                  activeDropdown === "dnaTesting" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            {activeDropdown === "dnaTesting" && (
-              <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
-                <li><Link href="/dna-testing/premium">DNA Test Premium</Link></li>
-                <li><Link href="/dna-testing/health">DNA Test Health</Link></li>
-                <li><Link href="/dna-testing/lifestyle">DNA Test Lifestyle</Link></li>
-                <li><Link href="/dna-testing/platinum">DNA Test Platinum</Link></li>
-              </ul>
-            )}
-          </div>
-
           <Link href="/doctors">DOCTORS</Link>
-          <Link href="/education-in-healthcare">EDUCATION IN HEALTHCARE</Link>
 
-          {/* Diagnostics & Preventive Health */}
+          {/* Services Main Menu */}
           <div>
             <button
-              onClick={() => toggleDropdown("diagnostics")}
+              onClick={() => toggleMainDropdown("services")}
               className="flex justify-between items-center w-full"
             >
-              <span className="font-bold">DIAGNOSTICS & PREVENTIVE HEALTH</span>
+              <span className="font-bold">SERVICES</span>
               <ChevronDown
                 size={20}
                 className={`transition-transform ${
-                  activeDropdown === "diagnostics" ? "rotate-180" : ""
+                  activeMainDropdown === "services" ? "rotate-180" : ""
                 }`}
               />
             </button>
-            {activeDropdown === "diagnostics" && (
-              <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
-                <li><Link href="/services/full-health-checkup">Full Health Check-Up</Link></li>
-                <li><Link href="/services/comprehensive-eye-examination">Comprehensive Eye Examination</Link></li>
-                <li><Link href="/services/dna-genetic-testing">DNA & Genetic Testing</Link></li>
-                <li><Link href="/services/vitamin-nutrient-testing">Vitamin & Nutrient Deficiency Testing</Link></li>
-                <li><Link href="/services/htma">Hair Tissue Mineral Analysis (HTMA)</Link></li>
-                <li><Link href="/services/oncology-screening">Oncology Screening</Link></li>
-                <li><Link href="/services/infertility-diagnostics">Infertility Diagnostics</Link></li>
-                <li><Link href="/services/obesity-assessment">Obesity & Nutritional Assessment</Link></li>
-              </ul>
+            {activeMainDropdown === "services" && (
+              <div className="pl-4 space-y-3">
+                
+                {/* Diagnostics & Preventive Health */}
+                <div>
+                  <button
+                    onClick={() => toggleSubDropdown("diagnostics")}
+                    className="flex justify-between items-center w-full text-gray-700 text-base font-semibold"
+                  >
+                    <span>Diagnostics & Preventive Health</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${
+                        activeSubDropdown === "diagnostics" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {activeSubDropdown === "diagnostics" && (
+                    <ul className="pl-4 text-gray-500 text-sm font-normal space-y-1 mt-2">
+                      <li><Link href="/services/full-health-checkup">Full Health Check-Up</Link></li>
+                      <li><Link href="/services/comprehensive-eye-examination">Comprehensive Eye Examination</Link></li>
+                      <li><Link href="/services/dna-genetic-testing">DNA & Genetic Testing</Link></li>
+                      <li><Link href="/services/vitamin-nutrient-testing">Vitamin & Nutrient Deficiency Testing</Link></li>
+                      <li><Link href="/services/htma">Hair Tissue Mineral Analysis (HTMA)</Link></li>
+                      <li><Link href="/services/oncology-screening">Oncology Screening</Link></li>
+                      <li><Link href="/services/infertility-diagnostics">Infertility Diagnostics</Link></li>
+                      <li><Link href="/services/obesity-nutritional-assessment">Obesity & Nutritional Assessment</Link></li>
+                    </ul>
+                  )}
+                </div>
+
+                {/* Regenerative & Advanced Therapies */}
+                <div>
+                  <button
+                    onClick={() => toggleSubDropdown("regenerative")}
+                    className="flex justify-between items-center w-full text-gray-700 text-base font-semibold"
+                  >
+                    <span>Regenerative & Advanced Therapies</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${
+                        activeSubDropdown === "regenerative" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {activeSubDropdown === "regenerative" && (
+                    <ul className="pl-4 text-gray-500 text-sm font-normal space-y-1 mt-2">
+                      <li><Link href="/services/stem-cell-therapy">Stem Cell Therapy</Link></li>
+                      <li><Link href="/services/wellness-anti-aging">Wellness & Anti-Aging Programs</Link></li>
+                      <li><Link href="/services/rehabilitation-physical-therapy">Rehabilitation & Physical Therapy</Link></li>
+                      <li><Link href="/services/integrative-medicine">Integrative Medicine Programs</Link></li>
+                    </ul>
+                  )}
+                </div>
+
+                {/* Specialist Medical Services */}
+                <div>
+                  <button
+                    onClick={() => toggleSubDropdown("specialist")}
+                    className="flex justify-between items-center w-full text-gray-700 text-base font-semibold"
+                  >
+                    <span>Specialist Medical Services</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${
+                        activeSubDropdown === "specialist" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {activeSubDropdown === "specialist" && (
+                    <ul className="pl-4 text-gray-500 text-sm font-normal space-y-1 mt-2">
+                      <li><Link href="/services/gynecology-urology">Gynecology & Urology</Link></li>
+                      <li><Link href="/services/infertility-treatment">Infertility Treatment</Link></li>
+                      <li><Link href="/services/oncology">Oncology</Link></li>
+                      <li><Link href="/services/cardiology">Cardiology</Link></li>
+                      <li><Link href="/services/neurology">Neurology</Link></li>
+                      <li><Link href="/services/hematology">Hematology</Link></li>
+                      <li><Link href="/services/endocrinology">Endocrinology</Link></li>
+                      <li><Link href="/services/orthopedics">Orthopedics</Link></li>
+                      <li><Link href="/services/dentistry">Dentistry</Link></li>
+                      <li><Link href="/services/ophthalmology">Ophthalmology</Link></li>
+                      <li><Link href="/services/ent-surgery">ENT (Ear, Nose & Throat) Surgery</Link></li>
+                      <li><Link href="/services/spine-back-vascular">Spine, Back & Vascular Health</Link></li>
+                    </ul>
+                  )}
+                </div>
+
+                {/* Aesthetic & Feminine Health */}
+                <div>
+                  <button
+                    onClick={() => toggleSubDropdown("aesthetic")}
+                    className="flex justify-between items-center w-full text-gray-700 text-base font-semibold"
+                  >
+                    <span>Aesthetic & Feminine Health</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${
+                        activeSubDropdown === "aesthetic" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {activeSubDropdown === "aesthetic" && (
+                    <ul className="pl-4 text-gray-500 text-sm font-normal space-y-1 mt-2">
+                      <li><Link href="/services/plastic-surgery">Plastic Surgery</Link></li>
+                      <li><Link href="/services/cosmetology-dermatology">Cosmetology & Dermatology</Link></li>
+                      <li><Link href="/services/scar-burn-treatment">Scar & Burn Treatment</Link></li>
+                      <li><Link href="/services/vaginal-rejuvenation">Vaginal Rejuvenation (Laser & Non-Surgical)</Link></li>
+                      <li><Link href="/services/voice-feminization">Voice Feminization & Laryngoplasty</Link></li>
+                      <li><Link href="/services/hair-transplant">Hair Transplant & Scalp Health</Link></li>
+                      <li><Link href="/services/weight-management">Weight Management & Diet Programs</Link></li>
+                    </ul>
+                  )}
+                </div>
+
+                {/* Therapies & Holistic Care */}
+                <div>
+                  <button
+                    onClick={() => toggleSubDropdown("holistic")}
+                    className="flex justify-between items-center w-full text-gray-700 text-base font-semibold"
+                  >
+                    <span>Therapies & Holistic Care</span>
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform ${
+                        activeSubDropdown === "holistic" ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {activeSubDropdown === "holistic" && (
+                    <ul className="pl-4 text-gray-500 text-sm font-normal space-y-1 mt-2">
+                      <li><Link href="/services/acupuncture-traditional-medicine">Acupuncture & Traditional Korean Medicine</Link></li>
+                      <li><Link href="/services/physical-therapy">Physical Therapy</Link></li>
+                    </ul>
+                  )}
+                </div>
+
+              </div>
             )}
           </div>
 
-          {/* Regenerative & Advanced Therapies */}
           <div>
             <button
-              onClick={() => toggleDropdown("regenerative")}
-              className="flex justify-between items-center w-full"
-            >
-              <span className="font-bold">REGENERATIVE & ADVANCED THERAPIES</span>
-              <ChevronDown
-                size={20}
-                className={`transition-transform ${
-                  activeDropdown === "regenerative" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            {activeDropdown === "regenerative" && (
-              <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
-                <li><Link href="/services/stem-cell-therapy">Stem Cell Therapy</Link></li>
-                <li><Link href="/services/wellness-anti-aging">Wellness & Anti-Aging Programs</Link></li>
-                <li><Link href="/services/rehabilitation-physical-therapy">Rehabilitation & Physical Therapy</Link></li>
-                <li><Link href="/services/integrative-medicine">Integrative Medicine Programs</Link></li>
-              </ul>
-            )}
-          </div>
-
-          {/* Specialist Medical Services */}
-          <div>
-            <button
-              onClick={() => toggleDropdown("specialist")}
-              className="flex justify-between items-center w-full"
-            >
-              <span className="font-bold">SPECIALIST MEDICAL SERVICES</span>
-              <ChevronDown
-                size={20}
-                className={`transition-transform ${
-                  activeDropdown === "specialist" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            {activeDropdown === "specialist" && (
-              <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
-                <li><Link href="/services/gynecology-urology">Gynecology & Urology</Link></li>
-                <li><Link href="/services/infertility-treatment">Infertility Treatment</Link></li>
-                <li><Link href="/services/oncology">Oncology</Link></li>
-                <li><Link href="/services/cardiology">Cardiology</Link></li>
-                <li><Link href="/services/neurology">Neurology</Link></li>
-                <li><Link href="/services/hematology">Hematology</Link></li>
-                <li><Link href="/services/endocrinology">Endocrinology</Link></li>
-                <li><Link href="/services/orthopedics">Orthopedics</Link></li>
-                <li><Link href="/services/dentistry">Dentistry</Link></li>
-                <li><Link href="/services/ophthalmology">Ophthalmology</Link></li>
-                <li><Link href="/services/ent-surgery">ENT (Ear, Nose & Throat) Surgery</Link></li>
-                <li><Link href="/services/spine-back-vascular">Spine, Back & Vascular Health</Link></li>
-              </ul>
-            )}
-          </div>
-
-          {/* Aesthetic & Feminine Health */}
-          <div>
-            <button
-              onClick={() => toggleDropdown("aesthetic")}
-              className="flex justify-between items-center w-full"
-            >
-              <span className="font-bold">AESTHETIC & FEMININE HEALTH</span>
-              <ChevronDown
-                size={20}
-                className={`transition-transform ${
-                  activeDropdown === "aesthetic" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            {activeDropdown === "aesthetic" && (
-              <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
-                <li><Link href="/services/plastic-surgery">Plastic Surgery</Link></li>
-                <li><Link href="/services/cosmetology-dermatology">Cosmetology & Dermatology</Link></li>
-                <li><Link href="/services/scar-burn-treatment">Scar & Burn Treatment</Link></li>
-                <li><Link href="/services/vaginal-rejuvenation">Vaginal Rejuvenation (Laser & Non-Surgical)</Link></li>
-                <li><Link href="/services/voice-feminization">Voice Feminization & Laryngoplasty</Link></li>
-                <li><Link href="/services/hair-transplant">Hair Transplant & Scalp Health</Link></li>
-                <li><Link href="/services/weight-management">Weight Management & Diet Programs</Link></li>
-              </ul>
-            )}
-          </div>
-
-          {/* Therapies & Holistic Care */}
-          <div>
-            <button
-              onClick={() => toggleDropdown("holistic")}
-              className="flex justify-between items-center w-full"
-            >
-              <span className="font-bold">THERAPIES & HOLISTIC CARE</span>
-              <ChevronDown
-                size={20}
-                className={`transition-transform ${
-                  activeDropdown === "holistic" ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-            {activeDropdown === "holistic" && (
-              <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
-                <li><Link href="/services/acupuncture-korean-medicine">Acupuncture & Traditional Korean Medicine</Link></li>
-                <li><Link href="/services/physical-therapy">Physical Therapy</Link></li>
-              </ul>
-            )}
-          </div>
-
-          <div>
-            <button
-              onClick={() => toggleDropdown("galleries")}
+              onClick={() => toggleMainDropdown("galleries")}
               className="flex justify-between items-center w-full"
             >
               <span className="font-bold">GALLERIES</span>
               <ChevronDown
                 size={20}
                 className={`transition-transform ${
-                  activeDropdown === "galleries" ? "rotate-180" : ""
+                  activeMainDropdown === "galleries" ? "rotate-180" : ""
                 }`}
               />
             </button>
-            {activeDropdown === "galleries" && (
+            {activeMainDropdown === "galleries" && (
               <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
                 <li><Link href="/galleries/photo">Photo Gallery</Link></li>
                 <li><Link href="/galleries/video">Video Gallery</Link></li>
@@ -227,18 +228,18 @@ export default function Navbar() {
 
           <div>
             <button
-              onClick={() => toggleDropdown("hospitals")}
+              onClick={() => toggleMainDropdown("hospitals")}
               className="flex justify-between items-center w-full"
             >
               <span className="font-bold">HOSPITALS</span>
               <ChevronDown
                 size={20}
                 className={`transition-transform ${
-                  activeDropdown === "hospitals" ? "rotate-180" : ""
+                  activeMainDropdown === "hospitals" ? "rotate-180" : ""
                 }`}
               />
             </button>
-            {activeDropdown === "hospitals" && (
+            {activeMainDropdown === "hospitals" && (
               <ul className="pl-4 text-gray-500 text-base font-normal space-y-2">
                 <li><Link href="/hospitals/horovice">Horovice Hospital</Link></li>
                 <li><Link href="/hospitals/beroun">Beroun Rehabilitation Hospital</Link></li>
@@ -251,9 +252,8 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link href="#">LATEST NEWS</Link>
-          <Link href="#">MEDONLINE 24/7</Link>
           <Link href="#">PATIENT TESTIMONIALS</Link>
+          <Link href="#">LATEST NEWS</Link>
 
           <Link href="/contact">
             <button className="mt-6 px-4 py-2 bg-[#0641c9] text-white rounded-full w-full text-center">

@@ -42,6 +42,52 @@ export async function generateStaticParams() {
   }));
 }
 
+// Helper function to flatten data for display
+function getFlattenedItems(service) {
+  let items: string[] = [];
+  let title = '';
+
+  if (service.canReveal && Array.isArray(service.canReveal)) {
+    items = service.canReveal;
+    title = 'What Can Be Revealed';
+  } else if (service.canDetect && Array.isArray(service.canDetect)) {
+    items = service.canDetect;
+    title = 'What Can Be Detected';
+  } else if (service.canImprove && Array.isArray(service.canImprove)) {
+    items = service.canImprove;
+    title = 'What Can Be Improved';
+  } else if (service.benefits && Array.isArray(service.benefits)) {
+    items = service.benefits;
+    title = 'Benefits';
+  } else if (service.treatmentsOffered && Array.isArray(service.treatmentsOffered)) {
+    items = service.treatmentsOffered;
+    title = 'Treatments Offered';
+  } else if (service.proceduresOffered && Array.isArray(service.proceduresOffered)) {
+    items = service.proceduresOffered;
+    title = 'Procedures Offered';
+  } else if (service.conditionsAddressed && Array.isArray(service.conditionsAddressed)) {
+    items = service.conditionsAddressed;
+    title = 'Conditions Addressed';
+  } else if (service.conditionsTreated) {
+    if (Array.isArray(service.conditionsTreated)) {
+      items = service.conditionsTreated;
+      title = 'Conditions Treated';
+    } else if (typeof service.conditionsTreated === 'object') {
+      // Handle nested objects like gynecology-urology
+      items = [];
+      Object.keys(service.conditionsTreated).forEach(key => {
+        if (Array.isArray(service.conditionsTreated[key])) {
+          items.push(`${key.charAt(0).toUpperCase() + key.slice(1)}:`);
+          items.push(...service.conditionsTreated[key]);
+        }
+      });
+      title = 'Conditions Treated';
+    }
+  }
+
+  return { items, title };
+}
+
 // Main SSR page component
 export default function ServicePage({ params }) {
   const service = getServiceData(params.slug);
@@ -49,6 +95,8 @@ export default function ServicePage({ params }) {
   if (!service) {
     notFound();
   }
+
+  const { items: flattenedItems, title: sectionTitle } = getFlattenedItems(service);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -181,23 +229,34 @@ export default function ServicePage({ params }) {
           </section>
         )}
 
-        {/* What Can Be Revealed/Detected */}
-        {(service.canReveal || service.canDetect || service.conditionsTreated || service.proceduresOffered) && (
+        {/* What Can Be Revealed/Detected/Treated */}
+        {flattenedItems.length > 0 && (
           <section>
             <h2 className="text-4xl font-light text-gray-900 mb-8 text-center">
-              {service.canReveal ? 'What Can Be Revealed' :
-               service.canDetect ? 'What Can Be Detected' :
-               service.conditionsTreated ? 'Conditions Treated' :
-               'Procedures Offered'}
+              {sectionTitle}
             </h2>
             <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-200/50">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {(service.canReveal || service.canDetect || service.conditionsTreated || service.proceduresOffered).map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-[#0641c9]/5 to-blue-600/5">
-                    <CheckCircle className="w-5 h-5 text-[#0641c9]" />
-                    <span className="text-gray-800 font-medium">{item}</span>
-                  </div>
-                ))}
+                {flattenedItems.map((item, index) => {
+                  // Check if item is a category header (ends with colon)
+                  const isHeader = typeof item === 'string' && item.endsWith(':');
+                  
+                  return (
+                    <div 
+                      key={index} 
+                      className={`flex items-center gap-3 p-4 rounded-xl ${
+                        isHeader 
+                          ? 'bg-[#0641c9]/10 col-span-full border-l-4 border-[#0641c9]' 
+                          : 'bg-gradient-to-r from-[#0641c9]/5 to-blue-600/5'
+                      }`}
+                    >
+                      {!isHeader && <CheckCircle className="w-5 h-5 text-[#0641c9]" />}
+                      <span className={`text-gray-800 ${isHeader ? 'font-bold text-lg' : 'font-medium'}`}>
+                        {item}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -227,7 +286,7 @@ export default function ServicePage({ params }) {
           <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-200/50 max-w-2xl mx-auto">
             <h3 className="text-3xl font-light text-gray-900 mb-6">Pricing Information</h3>
             <div className="text-5xl font-light text-[#0641c9] mb-4">
-              {service.price}
+              Contact for Quote
             </div>
             <p className="text-gray-600 mb-6">
               Prices may vary based on individual requirements and selected clinic
@@ -270,12 +329,6 @@ export default function ServicePage({ params }) {
             >
               <Calendar className="w-5 h-5" />
               Schedule Consultation
-            </Link>
-            <Link
-              href="/contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-[#0641c9] transition-colors duration-200 inline-flex items-center justify-center"
-            >
-              Get Quote
             </Link>
           </div>
         </div>

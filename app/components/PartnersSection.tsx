@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 // Generate all 36 partner logos
-const clientLogos = Array.from({ length: 36 }, (_, i) => ({
+const clientLogos = Array.from({ length: 35 }, (_, i) => ({
   logo: `/partners/partner${i + 1}.png`,
   alt: `Partner ${i + 1}`,
   id: i + 1
@@ -11,14 +11,11 @@ const clientLogos = Array.from({ length: 36 }, (_, i) => ({
 // Create scattered positioning and styling for each logo
 const getScatteredProps = (index) => {
   const sizes = [
-    'w-12 h-12', 'w-16 h-16', 'w-14 h-14', 'w-18 h-18', 
-    'w-13 h-13', 'w-15 h-15', 'w-17 h-17', 'w-20 h-20'
+     'w-32 h-32', 
+     'w-34 h-34'
   ];
   
-  const rotations = [
-    'rotate-3', '-rotate-2', 'rotate-1', '-rotate-3', 'rotate-2', 
-    '-rotate-1', 'rotate-0', 'rotate-4', '-rotate-4'
-  ];
+  
   
   const opacities = ['opacity-70', 'opacity-80', 'opacity-90', 'opacity-85'];
   
@@ -29,7 +26,6 @@ const getScatteredProps = (index) => {
   
   return {
     size: sizes[index % sizes.length],
-    rotation: rotations[index % rotations.length],
     opacity: opacities[index % opacities.length],
     margin: margins[index % margins.length]
   };
@@ -66,8 +62,8 @@ export default function Partners() {
         
         {/* Header Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#0641c9]/10 text-[#0641c9] text-sm font-medium mb-6 border border-[#0641c9]/20">
-            <div className="w-2 h-2 bg-[#0641c9] rounded-full mr-2 animate-pulse"></div>
+          <div className="inline-flex items-center px-4 py-2 bg-[#0641c9]/10 text-[#0641c9] text-sm font-medium mb-6 border border-[#0641c9]/20">
+            <div className="w-2 h-2 bg-[#0641c9] mr-2 animate-pulse"></div>
             36 Global Partners
           </div>
           
@@ -86,8 +82,8 @@ export default function Partners() {
         {/* Scattered Partners Grid */}
         <div className="relative">
           {/* Background decorative elements */}
-          <div className="absolute top-10 left-10 w-32 h-32 bg-[#0641c9]/5 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-20 right-16 w-48 h-48 bg-[#0641c9]/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-[#0641c9]/5  blur-2xl"></div>
+          <div className="absolute bottom-20 right-16 w-48 h-48 bg-[#0641c9]/5  blur-3xl"></div>
           
           {/* Main scattered layout */}
           <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 lg:gap-6 min-h-96 p-8">
@@ -99,7 +95,7 @@ export default function Partners() {
                 <div
                   key={client.id}
                   className={`
-                    ${props.size} ${props.rotation} ${props.margin} ${props.opacity}
+                    ${props.size}  ${props.margin} ${props.opacity}
                     group relative flex items-center justify-center cursor-pointer
                     transition-all duration-500 ease-out
                     ${isAnimated ? 'animate-pulse scale-110' : 'hover:scale-125'}
@@ -115,7 +111,7 @@ export default function Partners() {
                   <div className="relative w-full h-full">
                     {/* Background with brand color accent */}
                     <div className={`
-                      absolute inset-0 bg-white dark:bg-slate-800 rounded-2xl shadow-sm
+                      absolute inset-0 bg-white dark:bg-slate-800  shadow-sm
                       border border-slate-200 dark:border-slate-700
                       transition-all duration-500
                       ${hoveredLogo === client.id 
@@ -151,14 +147,14 @@ export default function Partners() {
                     
                     {/* Elegant hover ring effect */}
                     <div className={`
-                      absolute inset-0 rounded-2xl border-2 border-[#0641c9] 
+                      absolute inset-0  border-2 border-[#0641c9] 
                       transition-all duration-300
                       ${hoveredLogo === client.id ? 'opacity-40 scale-105' : 'opacity-0 scale-95'}
                     `}></div>
                     
                     {/* Subtle glow on hover */}
                     <div className={`
-                      absolute inset-0 rounded-2xl bg-[#0641c9]/10 blur-sm
+                      absolute inset-0  bg-[#0641c9]/10 blur-sm
                       transition-opacity duration-300
                       ${hoveredLogo === client.id ? 'opacity-100' : 'opacity-0'}
                     `}></div>

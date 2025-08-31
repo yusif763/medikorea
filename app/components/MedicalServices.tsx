@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Stethoscope, 
   Eye, 
@@ -19,76 +21,82 @@ import {
   Volume2,
   Weight,
   Flower2,
-  Plus
+  Plus,
+  ArrowRight
 } from 'lucide-react';
 
 const medicalServices = [
   {
     title: "Diagnostics & Preventive Health",
     icon: Stethoscope,
-    gradient: "from-blue-500 to-indigo-600",
+    gradient: "from-indigo-500 to-blue-600",
+    image: 'https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=1200&h=600&fit=crop',
     services: [
-      "Full Health Check-Up",
-      "Comprehensive Eye Examination", 
-      "DNA & Genetic Testing",
-      "Vitamin & Nutrient Deficiency Testing",
-      "Hair Tissue Mineral Analysis (HTMA)",
-      "Oncology Screening",
-      "Infertility Diagnostics",
-      "Obesity & Nutritional Assessment"
+      { name: "Full Health Check-Up", slug: "full-health-checkup" },
+      { name: "Comprehensive Eye Examination", slug: "comprehensive-eye-examination" },
+      { name: "DNA & Genetic Testing", slug: "dna-genetic-testing" },
+      { name: "Vitamin & Nutrient Deficiency Testing", slug: "vitamin-nutrient-testing" },
+      { name: "Hair Tissue Mineral Analysis (HTMA)", slug: "htma" },
+      { name: "Oncology Screening", slug: "oncology-screening" },
+      { name: "Infertility Diagnostics", slug: "infertility-diagnostics" },
+      { name: "Obesity & Nutritional Assessment", slug: "obesity-nutritional-assessment" }
     ]
   },
   {
     title: "Regenerative & Advanced Therapies",
     icon: Zap,
     gradient: "from-indigo-500 to-blue-600",
+    image: "https://images.unsplash.com/photo-1576671081837-49000212a370?w=600&h=400&fit=crop",
     services: [
-      "Stem Cell Therapy",
-      "Wellness & Anti-Aging Programs",
-      "Rehabilitation & Physical Therapy",
-      "Integrative Medicine Programs"
+      { name: "Stem Cell Therapy", slug: "stem-cell-therapy" },
+      { name: "Wellness & Anti-Aging Programs", slug: "wellness-anti-aging" },
+      { name: "Rehabilitation & Physical Therapy", slug: "rehabilitation-physical-therapy" },
+      { name: "Integrative Medicine Programs", slug: "integrative-medicine" }
     ]
   },
   {
     title: "Specialist Medical Services",
     icon: Heart,
-    gradient: "from-blue-600 to-indigo-700",
+    gradient: "from-indigo-500 to-blue-600",
+    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&h=400&fit=crop",
     services: [
-      "Gynecology & Urology",
-      "Infertility Treatment",
-      "Oncology",
-      "Cardiology",
-      "Neurology",
-      "Hematology",
-      "Endocrinology",
-      "Orthopedics",
-      "Dentistry",
-      "Ophthalmology",
-      "ENT (Ear, Nose & Throat) Surgery",
-      "Spine, Back & Vascular Health"
+      { name: "Gynecology & Urology", slug: "gynecology-urology" },
+      { name: "Infertility Treatment", slug: "infertility-treatment" },
+      { name: "Oncology", slug: "oncology" },
+      { name: "Cardiology", slug: "cardiology" },
+      { name: "Neurology", slug: "neurology" },
+      { name: "Hematology", slug: "hematology" },
+      { name: "Endocrinology", slug: "endocrinology" },
+      { name: "Orthopedics", slug: "orthopedics" },
+      { name: "Dentistry", slug: "dentistry" },
+      { name: "Ophthalmology", slug: "ophthalmology" },
+      { name: "ENT (Ear, Nose & Throat) Surgery", slug: "ent-surgery" },
+      { name: "Spine, Back & Vascular Health", slug: "spine-back-vascular" }
     ]
   },
   {
     title: "Aesthetic & Feminine Health",
     icon: Sparkles,
-    gradient: "from-indigo-400 to-blue-500",
+    gradient: "from-indigo-500 to-blue-600",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=400&fit=crop",
     services: [
-      "Plastic Surgery",
-      "Cosmetology & Dermatology",
-      "Scar & Burn Treatment",
-      "Vaginal Rejuvenation (Laser & Non-Surgical)",
-      "Voice Feminization & Laryngoplasty",
-      "Hair Transplant & Scalp Health",
-      "Weight Management & Diet Programs"
+      { name: "Plastic Surgery", slug: "plastic-surgery" },
+      { name: "Cosmetology & Dermatology", slug: "cosmetology-dermatology" },
+      { name: "Scar & Burn Treatment", slug: "scar-burn-treatment" },
+      { name: "Vaginal Rejuvenation (Laser & Non-Surgical)", slug: "vaginal-rejuvenation" },
+      { name: "Voice Feminization & Laryngoplasty", slug: "voice-feminization" },
+      { name: "Hair Transplant & Scalp Health", slug: "hair-transplant" },
+      { name: "Weight Management & Diet Programs", slug: "weight-management" }
     ]
   },
   {
     title: "Therapies & Holistic Care",
     icon: Flower2,
-    gradient: "from-blue-500 to-indigo-600",
+    gradient: "from-indigo-500 to-blue-600",
+    image: "https://images.unsplash.com/photo-1544991875-5dc1b05f607d?w=600&h=400&fit=crop",
     services: [
-      "Acupuncture & Traditional Korean Medicine",
-      "Physical Therapy"
+      { name: "Acupuncture & Traditional Korean Medicine", slug: "acupuncture-traditional-medicine" },
+      { name: "Physical Therapy", slug: "physical-therapy" }
     ]
   }
 ];
@@ -121,24 +129,24 @@ export default function MedicalServicesSection() {
   };
 
   return (
-    <section className="relative py-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
+    <section className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-slate-50 overflow-hidden">
       {/* Soft background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-100/30 to-indigo-100/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tr from-indigo-100/25 to-blue-100/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-gray-100/30 to-slate-100/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tr from-slate-100/25 to-gray-100/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
         
         {/* Elegant medical cross pattern */}
         <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `radial-gradient(circle at 50px 50px, #0641c9 2px, transparent 2px)`,
+          backgroundImage: `radial-gradient(circle at 50px 50px, #64748b 2px, transparent 2px)`,
           backgroundSize: '100px 100px'
         }}></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4">
-        {/* Luxury Header */}
+        {/* Header */}
         <div className="text-center mb-20">
           <div className="inline-block relative">
-            <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-blue-100/30 to-transparent blur-xl"></div>
+            <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-gray-100/30 to-transparent blur-xl"></div>
             <h2 className="relative text-5xl md:text-7xl font-light text-gray-900 mb-6 tracking-wide">
               Medical <span className="text-[#0641c9] font-normal italic">Services</span>
             </h2>
@@ -154,7 +162,7 @@ export default function MedicalServicesSection() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1  gap-8">
+        <div className="grid grid-cols-1 gap-8">
           {medicalServices.map((category, index) => {
             const IconComponent = category.icon;
             const isExpanded = expandedCard === index;
@@ -169,69 +177,90 @@ export default function MedicalServicesSection() {
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                {/* Luxury Card */}
-                <div className={`relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-200/50 transition-all duration-300 cursor-pointer ${
-                  isExpanded ? 'shadow-2xl border-[#0641c9]/30 transform scale-105' : 'hover:shadow-2xl hover:border-[#0641c9]/20'
-                }`}
-                onClick={() => toggleCard(index)}
-                >
-                  {/* Luxury accent line */}
-                  <div className="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-transparent via-[#0641c9] to-transparent rounded-full"></div>
+                {/* Main Card */}
+                <div className={`relative bg-white/90 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl border border-gray-200/50 transition-all duration-300 ${
+                  isExpanded ? 'shadow-2xl border-[#0641c9]/30' : 'hover:shadow-2xl hover:border-[#0641c9]/20'
+                }`}>
                   
-                  {/* Icon Container */}
-                  <div className="relative mb-6">
-                    <div className={`absolute -inset-3 bg-gradient-to-br ${category.gradient} rounded-full opacity-20 animate-pulse`}></div>
-                    <div className={`relative bg-gradient-to-br ${category.gradient} rounded-full p-4 shadow-lg`}>
-                      <IconComponent className="w-8 h-8 text-white" />
+                  {/* Image Section */}
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src={category.image}
+                      alt={category.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t  opacity-80`}></div>
+                    
+                    {/* Icon Overlay */}
+                    <div className="absolute top-6 left-6">
+                      <div className={`bg-white/20 backdrop-blur-sm rounded-full p-4 shadow-lg`}>
+                        <IconComponent className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Title Overlay */}
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="text-3xl font-light text-white mb-2 leading-tight tracking-wide">
+                        {category.title}
+                      </h3>
                     </div>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-light text-gray-900 mb-4 leading-tight tracking-wide">
-                    {category.title}
-                  </h3>
-
-                  {/* Services Preview */}
-                  <div className="space-y-2 mb-6">
-                    {category.services.slice(0, 3).map((service, serviceIndex) => (
-                      <div key={serviceIndex} className="flex items-center gap-3 text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-[#0641c9] rounded-full"></div>
-                        <span className="text-sm font-light">{service}</span>
-                      </div>
-                    ))}
-                    {category.services.length > 3 && (
-                      <div className="flex items-center gap-3 text-gray-500">
-                        <Plus className="w-4 h-4" />
-                        <span className="text-sm font-light">
-                          {category.services.length - 3} more services
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Expand Button */}
-                  <button className={`w-full py-3 px-6 bg-gradient-to-r ${category.gradient} text-white rounded-2xl font-light tracking-wide transition-all duration-200 hover:shadow-lg transform hover:scale-105`}>
-                    {isExpanded ? 'Show Less' : 'View All Services'}
-                  </button>
-
-                  {/* Expanded Services */}
-                  <div className={`overflow-hidden transition-all duration-500 ${
-                    isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'
-                  }`}>
-                    <div className="pt-4 border-t border-gray-200/50">
-                      <div className="grid gap-2">
-                        {category.services.slice(3).map((service, serviceIndex) => (
-                          <div key={serviceIndex} className="flex items-center gap-3 text-gray-600">
-                            <div className="w-1.5 h-1.5 bg-[#0641c9] rounded-full"></div>
-                            <span className="text-sm font-light">{service}</span>
+                  {/* Content Section */}
+                  <div className="p-8">
+                    {/* Services Preview */}
+                    <div className="space-y-3 mb-6">
+                      {category.services.slice(0, 3).map((service, serviceIndex) => (
+                        <Link
+                          key={serviceIndex}
+                          href={`/services/${service.slug}`}
+                          className="flex items-center justify-between p-3 rounded-xl bg-gray-50/50 hover:bg-gray-100/50 transition-all duration-200 group/service"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className={`w-2 h-2 bg-gradient-to-r ${category.gradient} rounded-full`}></div>
+                            <span className="text-gray-700 font-medium group-hover/service:text-[#0641c9] transition-colors">
+                              {service.name}
+                            </span>
                           </div>
-                        ))}
+                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover/service:text-[#0641c9] transition-colors" />
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* Expand Button */}
+                    {category.services.length >= 3 && (<button 
+                      onClick={() => toggleCard(index)}
+                      className={`w-full py-3 px-6 bg-gradient-to-r ${category.gradient} text-white rounded-2xl font-medium tracking-wide transition-all duration-200 hover:shadow-lg transform hover:scale-105`}
+                    >
+                      {isExpanded ? 'Show Less' : `View All ${category.services.length} Services`}
+                    </button>)}
+
+                    {/* Expanded Services */}
+                    <div className={`overflow-scroll transition-all duration-500 ${
+                      isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'
+                    }`}>
+                      <div className="pt-6 border-t border-gray-200/50">
+                        <div className="space-y-2">
+                          {category.services.slice(3).map((service, serviceIndex) => (
+                            <Link
+                              key={serviceIndex}
+                              href={`/services/${service.slug}`}
+                              className="flex items-center justify-between p-3 rounded-xl bg-gray-50/50 hover:bg-gray-100/50 transition-all duration-200 group/service"
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className={`w-2 h-2 bg-gradient-to-r ${category.gradient} rounded-full`}></div>
+                                <span className="text-gray-700 font-medium group-hover/service:text-[#0641c9] transition-colors">
+                                  {service.name}
+                                </span>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-gray-400 group-hover/service:text-[#0641c9] transition-colors" />
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Hover Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0641c9]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
 
                 {/* Floating Elements */}
@@ -253,8 +282,6 @@ export default function MedicalServicesSection() {
             );
           })}
         </div>
-
-
       </div>
 
       <style jsx>{`
