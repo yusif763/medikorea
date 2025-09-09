@@ -49,7 +49,6 @@ export default function Navbar() {
 
         <div className="flex flex-col gap-4 text-black font-semibold text-lg">
           <Link href="/about">ABOUT US</Link>
-          <Link href="/doctors">DOCTORS</Link>
 
           {/* Services Main Menu */}
           <div>
@@ -225,7 +224,7 @@ export default function Navbar() {
               </ul>
             )}
           </div>
-
+{/* 
           <div>
             <button
               onClick={() => toggleMainDropdown("hospitals")}
@@ -250,10 +249,10 @@ export default function Navbar() {
                 <li><Link href="/hospitals/europe-ivf">The Europe IVF+</Link></li>
               </ul>
             )}
-          </div>
+          </div> */}
 
           <Link href="#">PATIENT TESTIMONIALS</Link>
-          <Link href="#">LATEST NEWS</Link>
+          {/* <Link href="#">LATEST NEWS</Link> */}
 
           <Link href="/contact">
             <button className="mt-6 px-4 py-2 bg-[#0641c9] text-white rounded-full w-full text-center">
