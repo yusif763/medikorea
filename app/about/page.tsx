@@ -90,8 +90,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-gray-100 p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-bold mb-4">Phone</h3>
-            <p className="text-gray-700">+82 10 1234 5678</p>
-            <p className="text-gray-700">+82 10 8765 4321</p>
+            <p className="text-gray-700">+82 10 4440 1082</p>
           </div>
           <div className="bg-gray-100 p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-bold mb-4">Email</h3>
@@ -113,16 +112,16 @@ export default function AboutPage() {
       <section className="mb-12">
         <h2 className="text-3xl font-bold text-blue-800 mb-6">Follow Us</h2>
         <div className="flex justify-center gap-6">
-          <a href="https://facebook.com/medihelpkorea" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer">
             <img src="/icons/facebook.svg" alt="Facebook" className="w-10 h-10" />
           </a>
-          <a href="https://twitter.com/medihelpkorea" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer">
             <img src="/icons/twitter.svg" alt="Twitter" className="w-10 h-10" />
           </a>
-          <a href="https://instagram.com/medihelpkorea" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer">
             <img src="/icons/instagram.svg" alt="Instagram" className="w-10 h-10" />
           </a>
-          <a href="https://linkedin.com/company/medihelpkorea" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer">
             <img src="/icons/linkedin.svg" alt="LinkedIn" className="w-10 h-10" />
           </a>
         </div>

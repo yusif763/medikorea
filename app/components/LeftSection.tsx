@@ -21,7 +21,7 @@ export default function LeftSection() {
           header: 'Get in Touch',
           description: 'We are here to assist you. Reach out to us for any inquiries or support.',
           buttonText: 'Send Message',
-          buttonLink: '/contact-form',
+          buttonLink: '/contact',
         };
       case "/about":
         return {

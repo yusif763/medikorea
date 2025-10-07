@@ -255,12 +255,20 @@ export default function FAQSection() {
               Our medical coordinators are here to help you 24/7
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-[#0641c9] to-blue-600 text-white px-8 py-4 rounded-2xl font-light tracking-wide transition-all duration-200 hover:shadow-xl transform hover:scale-105">
+              <a
+                href="https://wa.me/821044401082"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-[#0641c9] to-blue-600 text-white px-8 py-4 rounded-2xl font-light tracking-wide transition-all duration-200 hover:shadow-xl transform hover:scale-105"
+              >
                 WhatsApp Us
-              </button>
-              <button className="bg-white border-2 border-[#0641c9] text-[#0641c9] px-8 py-4 rounded-2xl font-light tracking-wide transition-all duration-200 hover:bg-[#0641c9] hover:text-white">
+              </a>
+              <a
+                href="mailto:info@medihelpkorea.com"
+                className="bg-white border-2 border-[#0641c9] text-[#0641c9] px-8 py-4 rounded-2xl font-light tracking-wide transition-all duration-200 hover:bg-[#0641c9] hover:text-white"
+              >
                 Email Us
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -68,10 +68,8 @@ export default function Partners() {
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Companies That
-            <span className="block text-[#0641c9] bg-gradient-to-r from-[#0641c9] to-blue-600 bg-clip-text text-transparent">
-              Trust Our Vision
-            </span>
+            Our Partners
+
           </h2>
           
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">

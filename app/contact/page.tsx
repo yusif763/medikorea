@@ -110,7 +110,7 @@ const ContactPage = () => {
           </div>
           <div>
             <h3 className="text-lg font-semibold text-blue-700">Phone</h3>
-            <p className="text-gray-600 mt-2">+82 10-1234-5678</p>
+            <p className="text-gray-600 mt-2">+82 10 4440 1082</p>
           </div>
           <div>
             <h3 className="text-lg font-semibold text-blue-700">Email</h3>
@@ -119,10 +119,10 @@ const ContactPage = () => {
           <div>
             <h3 className="text-lg font-semibold text-blue-700">Follow Us</h3>
             <div className="flex space-x-4 mt-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Facebook</a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Twitter</a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">Instagram</a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">LinkedIn</a>
+              <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Facebook</a>
+              <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Twitter</a>
+              <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">Instagram</a>
+              <a href="https://www.instagram.com/medihelpkorea?igsh=MXU1dXpvcDBidmpiZQ==" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">LinkedIn</a>
             </div>
           </div>
         </div>
