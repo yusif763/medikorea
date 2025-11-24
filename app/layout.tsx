@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'MediHelp Korea - Your Medical Tourism Partner',
+  icons: {
+    icon: '/fav.png',
+    shortcut: '/fav.png',
+    apple: '/fav.png',
+  },
   description: 'Discover the best medical services in Korea with MediHelp. Trusted, reliable, and professional.',
   openGraph: {
     title: 'MediHelp Korea',
@@ -57,7 +62,7 @@ export default function RootLayout({
           {/* Left Section */}
           <LeftSection />
           {/* Right Section */}
-          <div className="md:w-1/2 flex-1 mt-[56px] overflow-y-auto">
+          <div className="md:w-1/2 flex-1 mt-[56px] overflow-y-auto" id="main-content">
             {children}
             <Footer />
           </div>
